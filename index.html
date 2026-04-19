@@ -1,91 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zestober 2025</title>
+  <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+  }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans)}
-.top-nav{display:flex;gap:0;padding:1.25rem 1.25rem 0;border-bottom:0.5px solid var(--color-border-tertiary)}
-.tab{padding:10px 20px;font-size:14px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--color-text-secondary);border-bottom:2.5px solid transparent;margin-bottom:-0.5px;transition:all 0.15s}
-.tab.active{color:var(--color-text-primary);border-bottom-color:#7F77DD}
-.page{display:none;padding:1.25rem}
-.page.active{display:block}
+  body {
+    font-family: var(--font-sans);
+    background:linear-gradient(black,rgb(5, 71, 5),black);
+    color:white;
+  }
 
-.hero{text-align:center;padding:0.5rem 0 1rem}
-.hero h1{font-size:24px;font-weight:500;color:var(--color-text-primary)}
-.hero p{font-size:13px;color:var(--color-text-secondary);margin-top:4px}
-.filters{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
-.pill{padding:5px 13px;border-radius:99px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid transparent;background:transparent}
-.pill.all{border-color:#888780;color:#5F5E5A}.pill.all.active{background:#888780;color:#fff}
-.pill.code{border-color:#378ADD;color:#185FA5}.pill.code.active{background:#378ADD;color:#fff}
-.pill.design{border-color:#D4537E;color:#993556}.pill.design.active{background:#D4537E;color:#fff}
-.pill.write{border-color:#1D9E75;color:#0F6E56}.pill.write.active{background:#1D9E75;color:#fff}
-.pill.solve{border-color:#BA7517;color:#854F0B}.pill.solve.active{background:#BA7517;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px;margin-bottom:1rem}
-.card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px;background:var(--color-background-primary);cursor:pointer;transition:transform 0.1s}
-.card:hover{transform:translateY(-1px);border-color:var(--color-border-secondary)}
-.card.selected.code{border:1.5px solid #378ADD}.card.selected.design{border:1.5px solid #D4537E}
-.card.selected.write{border:1.5px solid #1D9E75}.card.selected.solve{border:1.5px solid #BA7517}
-.card.hidden{display:none}
-.day-num{font-size:11px;color:var(--color-text-tertiary);margin-bottom:4px}
-.cat-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;border-radius:6px;padding:2px 7px;margin-bottom:6px}
-.cat-badge.code{background:#E6F1FB;color:#185FA5}.cat-badge.design{background:#FBEAF0;color:#993556}
-.cat-badge.write{background:#E1F5EE;color:#0F6E56}.cat-badge.solve{background:#FAEEDA;color:#854F0B}
-.card-title{font-size:12px;font-weight:500;color:var(--color-text-primary);line-height:1.5}
-.dot{width:6px;height:6px;border-radius:50%;display:inline-block}
-.dot.code{background:#378ADD}.dot.design{background:#D4537E}.dot.write{background:#1D9E75}.dot.solve{background:#BA7517}
-.detail-panel{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:1.2rem;background:var(--color-background-secondary);display:none;margin-bottom:1rem}
-.detail-panel.visible{display:block}
-.detail-panel.code{border-color:#378ADD}.detail-panel.design{border-color:#D4537E}
-.detail-panel.write{border-color:#1D9E75}.detail-panel.solve{border-color:#BA7517}
-.d-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
-.d-day{font-size:11px;color:var(--color-text-tertiary);margin-bottom:3px}
-.d-title{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px}
-.d-close{background:none;border:none;cursor:pointer;font-size:15px;color:var(--color-text-secondary)}
-.d-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:12px}
-.res-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:8px}
-.res-links{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
-.res-link{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:12px;font-weight:500;text-decoration:none;background:var(--color-background-primary);color:var(--color-text-primary)}
-.res-link:hover{background:var(--color-background-tertiary)}
-.res-link .favicon{width:14px;height:14px;border-radius:2px}
-.go-btn{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:var(--color-background-primary);color:var(--color-text-primary);font-family:var(--font-sans)}
-.go-btn:hover{background:var(--color-background-tertiary)}
+  .top-nav {
+    display: flex;
+    gap: 0;
+    padding: 1.25rem 1.25rem 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary)
+  }
 
-/* BEGINNER */
-.beg-hero{background:#EEEDFE;border-radius:var(--border-radius-lg);padding:1.4rem;text-align:center;margin-bottom:1.2rem}
-.beg-hero h2{font-size:20px;font-weight:500;color:#3C3489;margin-bottom:5px}
-.beg-hero p{font-size:13px;color:#534AB7;line-height:1.6}
-.steps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:1.2rem}
-.step-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px;text-align:center}
-.step-icon{font-size:20px;margin-bottom:6px}
-.step-num{font-size:10px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:3px}
-.step-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
-.step-sub{font-size:11px;color:var(--color-text-secondary);line-height:1.4}
-.tip-box{background:#FAEEDA;border:0.5px solid #EF9F27;border-radius:var(--border-radius-md);padding:11px;margin-bottom:1.1rem}
-.tip-box p{font-size:12px;color:#633806;line-height:1.6}
-.section-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px}
-.challenge-list{display:flex;flex-direction:column;gap:9px;margin-bottom:1rem}
-.beg-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:13px;background:var(--color-background-primary);cursor:pointer}
-.beg-card.open{border-color:#7F77DD;border-width:1.5px}
-.beg-header{display:flex;align-items:center;gap:10px}
-.beg-num{width:26px;height:26px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.beg-info{flex:1}
-.beg-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
-.beg-tag{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
-.beg-arrow{font-size:12px;color:var(--color-text-tertiary);transition:transform 0.2s}
-.beg-card.open .beg-arrow{transform:rotate(90deg)}
-.beg-body{display:none;padding-top:11px;margin-top:11px;border-top:0.5px solid var(--color-border-tertiary)}
-.beg-card.open .beg-body{display:block}
-.beg-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:10px}
-.think-steps{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:11px;margin-bottom:10px}
-.think-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:7px}
-.think-step{display:flex;gap:8px;margin-bottom:6px;font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-.think-step:last-child{margin-bottom:0}
-.think-step-num{width:17px;height:17px;background:#7F77DD;color:#fff;border-radius:50%;font-size:10px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.beg-res-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:7px}
-.beg-res-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.beg-res-link{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:var(--border-radius-md);border:0.5px solid #AFA9EC;font-size:12px;font-weight:500;text-decoration:none;background:#EEEDFE;color:#3C3489}
-.beg-res-link:hover{background:#CECBF6}
-.beg-btn{padding:7px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:12px;cursor:pointer;background:var(--color-background-secondary);color:var(--color-text-primary);font-family:var(--font-sans)}
-.beg-btn:hover{background:var(--color-background-tertiary)}
-</style>
+  .tab {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--color-text-secondary);
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -0.5px;
+    transition: all 0.15s
+  }
+
+  .tab.active {
+    color: var(--color-text-primary);
+    border-bottom-color: #44c205
+  }
+
+  .page {
+    display: none;
+    padding: 1.25rem
+  }
+
+  .page.active {
+    display: block
+  }
+
+  .hero {
+    text-align: center;
+    padding: 0.5rem 0 1rem
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--color-text-primary)
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-top: 4px
+  }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .pill {
+    padding: 5px 13px;
+    border-radius: 99px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    background: transparent;
+  }
+
+  .pill.all {
+    border-color: #888780;
+    color: #5F5E5A
+  }
+
+  .pill.all.active {
+    background: #888780;
+    color: #fff
+  }
+
+  .pill.code {
+    border-color: #378ADD;
+    color: #185FA5
+  }
+
+  .pill.code.active {
+    background: #378ADD;
+    color: #fff
+  }
+
+  .pill.design {
+    border-color: #D4537E;
+    color: #993556
+  }
+
+  .pill.design.active {
+    background: #D4537E;
+    color: #fff
+  }
+
+  .pill.write {
+    border-color: #1D9E75;
+    color: #0F6E56
+  }
+
+  .pill.write.active {
+    background: #1D9E75;
+    color: #fff
+  }
+
+  .pill.solve {
+    border-color: #BA7517;
+    color: #854F0B
+  }
+
+  .pill.solve.active {
+    background: #BA7517;
+    color: #fff
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(6,1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding:1rem;
+    
+  }
+
+  /* Responsive grid - Tablet */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .tab {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+
+  /* Responsive grid - Mobile */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0.75rem;
+      gap: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero p {
+      font-size: 13px;
+    }
+
+    .tab {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+
+    .top-nav {
+      padding: 0.75rem 0.75rem 0;
+    }
+
+    .page {
+      padding: 0.75rem;
+    }
+
+    .filters {
+      gap: 6px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      font-size: 14px;
+    }
+
+    .card-title {
+      font-size: 15px;
+    }
+
+    .day-num {
+      font-size: 0.85rem;
+      padding: 6px;
+    }
+
+    .steps-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .step-card {
+      padding: 8px;
+    }
+
+    .step-icon {
+      font-size: 18px;
+    }
+
+    .step-title {
+      font-size: 11px;
+    }
+
+    .step-sub {
+      font-size: 10px;
+    }
+  }
+
+  /* Responsive grid - Small Mobile */
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 12px;
+    }
+
+    .tab {
+      padding: 5px 8px;
+      font-size: 12px;
+    }
+
+    .top-nav {
+      padding: 0.5rem 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .page {
+      padding: 0.5rem;
+    }
+
+    .filters {
+      gap: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .pill {
+      padding: 3px 8px;
+      font-size: 12px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      padding: 6px;
+    }
+
+    .day-num {
+      font-size: 0.75rem;
+      padding: 4px;
+    }
+
+    .cat-badge {
+      font-size: 14px;
+      margin-top: 6px;
+      padding: 2px 5px;
+    }
+
+    .steps-row {
+      grid-template-columns: 1fr;
+    }
+
+    .detail-panel {
+      padding: 0.8rem;
+    }
+
+    .d-title {
+      font-size: 14px;
+    }
+
+    .d-desc {
+      font-size: 12px;
+    }
+
+    .res-link {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+
+    .go-btn {
+      width: 100%;
+      font-size: 12px;
+    }
+
+    .beg-hero {
+      padding: 1rem;
+    }
+
+    .beg-hero h2 {
+      font-size: 18px;
+    }
+
+    .beg-hero p {
+      font-size: 12px;
+    }
+
+    .beg-card {
+      padding: 10px;
+    }
+
+    .beg-title {
+      font-size: 14px;
+    }
+
+    .beg-tag {
+      font-size: 11px;
+    }
+
+    .beg-btn {
+      width: 100%;
+    }
+  }
+  
+
+  .card {
+    border:1px solid rgb(95, 92, 92);
+    border-radius: 1rem;
+    padding:1rem;
+    background-color:rgba(128, 128, 128, 0.163);
+    cursor: pointer;
+    transition: transform 0.1s;
+    
+  }
+
+  .card:hover {
+    transform: translateY(-1px);
+    border-color: var(--color-border-secondary);
+    box-shadow: 0 0 10px rgb(104, 127, 5),0 0 10px rgb(131, 233, 14);
+    
+  }
+
+  .card.selected.code {
+    border: 1.5px solid #378ADD;
+  }
+
+  .card.selected.design {
+    border: 1.5px solid #D4537E
+  }
+
+  .card.selected.write {
+    border: 1.5px solid #1D9E75
+  }
+
+  .card.selected.solve {
+    border: 1.5px solid #BA7517
+  }
+
+  .card.hidden {
+    display: none
+  }
+
+  .day-num {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgb(215, 209, 209);
+    text-align: center;
+    font-size:1rem;
+    padding:10px;
+  }
+
+  .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    margin-top:10px;
+    padding: 2px 7px;
+    margin-bottom: 6px
+  }
+
+  .cat-badge.code {
+    background: #E6F1FB;
+    color: #185FA5;
+    
+    
+  }
+
+  .cat-badge.design {
+    background: #FBEAF0;
+    color: #993556
+  }
+
+  .cat-badge.write {
+    background: #E1F5EE;
+    color: #0F6E56
+  }
+
+  .cat-badge.solve {
+    background: #FAEEDA;
+    color: #854F0B
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    padding:10px;
+    
+
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block
+  }
+
+  .dot.code {
+    background: #378ADD
+  }
+
+  .dot.design {
+    background: #D4537E
+  }
+
+  .dot.write {
+    background: #1D9E75
+  }
+
+  .dot.solve {
+    background: #BA7517
+  }
+
+  .detail-panel {
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 1.2rem;
+    background: var(--color-background-secondary);
+    display: none;
+    margin-bottom: 1rem;
+    
+  }
+
+  .detail-panel.visible {
+    display: block;
+    background-color: rgba(128, 128, 128, 0.331);
+    border-radius: 1rem;
+
+  }
+
+  .detail-panel.code {
+    border-color: #378ADD
+  }
+
+  .detail-panel.design {
+    border-color: #D4537E
+  }
+
+  .detail-panel.write {
+    border-color: #1D9E75
+  }
+
+  .detail-panel.solve {
+    border-color: #BA7517
+  }
+
+  .d-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px
+  }
+
+  .d-day {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 3px
+  }
+
+  .d-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 8px
+  }
+
+  .d-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--color-text-secondary)
+  }
+
+  .d-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 12px
+  }
+
+  .res-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    margin-bottom: 8px
+  }
+
+  .res-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px
+  }
+
+  .res-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    background: var(--color-background-primary);
+    color: var(--color-text-primary)
+  }
+
+  .res-link:hover {
+    background: var(--color-background-tertiary)
+  }
+
+  .res-link .favicon {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px
+  }
+
+  .go-btn {
+    padding: 7px 16px;
+    border-radius: var(--border-radius-md);
+    border:1px solid rgba(128, 128, 128, 0.548);
+    font-size: 13px;
+    cursor: pointer;
+    
+    color:black;
+    border-radius: 10px;
+    font-family: var(--font-sans);
+  }
+
+  .go-btn:hover {
+    background-color:green;
+    box-shadow: 0 0 10px rgb(28, 247, 28);
+    color:white;
+  }
+
+  /* BEGINNER */
+  .beg-hero {
+    background: #EEEDFE;
+    border-radius: var(--border-radius-lg);
+    padding: 1.4rem;
+    text-align: center;
+    margin-bottom: 1.2rem
+  }
+
+  .beg-hero h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #3C3489;
+    margin-bottom: 5px
+  }
+
+  .beg-hero p {
+    font-size: 13px;
+    color: #534AB7;
+    line-height: 1.6
+  }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 1.2rem
+  }
+
+  .step-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 12px;
+    text-align: center
+  }
+
+  .step-icon {
+    font-size: 20px;
+    margin-bottom: 6px
+  }
+
+  .step-num {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    margin-bottom: 3px
+  }
+
+  .step-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 3px
+  }
+
+  .step-sub {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    line-height: 1.4
+  }
+
+  .tip-box {
+    background: #FAEEDA;
+    border: 0.5px solid #EF9F27;
+    border-radius: var(--border-radius-md);
+    padding: 11px;
+    margin-bottom: 1.1rem
+  }
+
+  .tip-box p {
+    font-size: 12px;
+    color: #633806;
+    line-height: 1.6
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px
+  }
+
+  .challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 1rem
+  }
+
+  .beg-card {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 13px;
+    background: var(--color-background-primary);
+    cursor: pointer
+  }
+
+  .beg-card.open {
+    border-color: #7F77DD;
+    border-width: 1.5px
+  }
+
+  .beg-header {
+    display: flex;
+    align-items: center;
+    gap: 10px
+  }
+
+  .beg-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #EEEDFE;
+    color: #3C3489;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0
+  }
+
+  .beg-info {
+    flex: 1
+  }
+
+  .beg-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary)
+  }
+
+  .beg-tag {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    margin-top: 2px
+  }
+
+  .beg-arrow {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    transition: transform 0.2s
+  }
+
+  .beg-card.open .beg-arrow {
+    transform: rotate(90deg)
+  }
+
+  .beg-body {
+    display: none;
+    padding-top: 11px;
+    margin-top: 11px;
+    border-top: 0.5px solid var(--color-border-tertiary)
+  }
+
+  .beg-card.open .beg-body {
+    display: block
+  }
+
+  .beg-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 10px
+  }
+
+  .think-steps {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 11px;
+    margin-bottom: 10px
+  }
+
+  .think-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    margin-bottom: 7px
+  }
+
+  .think-step {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 1.5
+  }
+
+  .think-step:last-child {
+    margin-bottom: 0
+  }
+
+  .think-step-num {
+    width: 17px;
+    height: 17px;
+    background: #7F77DD;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px
+  }
+
+  .beg-res-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    margin-bottom: 7px
+  }
+
+  .beg-res-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px
+  }
+
+  .beg-res-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 11px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid #AFA9EC;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    background: #EEEDFE;
+    color: #3C3489
+  }
+
+  .beg-res-link:hover {
+    background: #CECBF6
+  }
+
+  .beg-btn {
+    padding: 7px 14px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans)
+  }
+
+  .beg-btn:hover {
+    background: var(--color-background-tertiary)
+  }
+  </style>
+</head>
+<body>
 
 <div class="top-nav">
   <button class="tab active" onclick="showTab('calendar')">Challenge Calendar</button>
@@ -126,171 +881,195 @@ body{font-family:var(--font-sans)}
 <div class="page" id="page-beginner">
   <div class="beg-hero">
     <h2>Start From Zero</h2>
-    <p>No coding, no experience needed. These challenges train your mind to think logically — one small step at a time.</p>
+    <p>No coding, no experience needed. These challenges train your mind to think logically — one small step at a time.
+    </p>
   </div>
   <div class="steps-row">
-    <div class="step-card"><div class="step-icon">👀</div><div class="step-num">Step 1</div><div class="step-title">Read the problem</div><div class="step-sub">Understand what is being asked before jumping in</div></div>
-    <div class="step-card"><div class="step-icon">🧩</div><div class="step-num">Step 2</div><div class="step-title">Break it apart</div><div class="step-sub">Split big problems into smaller, easier pieces</div></div>
-    <div class="step-card"><div class="step-icon">✏️</div><div class="step-num">Step 3</div><div class="step-title">Think out loud</div><div class="step-sub">Write your thoughts — plain words work perfectly</div></div>
-    <div class="step-card"><div class="step-icon">✅</div><div class="step-num">Step 4</div><div class="step-title">Check your answer</div><div class="step-sub">Ask: does this make sense? What did I miss?</div></div>
+    <div class="step-card">
+      <div class="step-icon">👀</div>
+      <div class="step-num">Step 1</div>
+      <div class="step-title">Read the problem</div>
+      <div class="step-sub">Understand what is being asked before jumping in</div>
+    </div>
+    <div class="step-card">
+      <div class="step-icon">🧩</div>
+      <div class="step-num">Step 2</div>
+      <div class="step-title">Break it apart</div>
+      <div class="step-sub">Split big problems into smaller, easier pieces</div>
+    </div>
+    <div class="step-card">
+      <div class="step-icon">✏️</div>
+      <div class="step-num">Step 3</div>
+      <div class="step-title">Think out loud</div>
+      <div class="step-sub">Write your thoughts — plain words work perfectly</div>
+    </div>
+    <div class="step-card">
+      <div class="step-icon">✅</div>
+      <div class="step-num">Step 4</div>
+      <div class="step-title">Check your answer</div>
+      <div class="step-sub">Ask: does this make sense? What did I miss?</div>
+    </div>
   </div>
-  <div class="tip-box"><p><strong>You don't need to be perfect.</strong> Problem-solving is a skill built by practice. Every challenge here has a guided thinking path and a free website to keep learning — just follow the steps!</p></div>
+  <div class="tip-box">
+    <p><strong>You don't need to be perfect.</strong> Problem-solving is a skill built by practice. Every challenge here
+      has a guided thinking path and a free website to keep learning — just follow the steps!</p>
+  </div>
   <div class="section-label">10 Beginner Challenges — Click any to expand</div>
   <div class="challenge-list" id="beg-list"></div>
 </div>
 
 <script>
-const catLinks = {
-  code:[
-    {name:'freeCodeCamp',url:'https://www.freecodecamp.org',color:'#1D9E75'},
-    {name:'HackerRank',url:'https://www.hackerrank.com/domains/tutorials/10-days-of-javascript',color:'#185FA5'},
-    {name:'W3Schools',url:'https://www.w3schools.com',color:'#854F0B'},
-  ],
-  design:[
-    {name:'Figma Community',url:'https://www.figma.com/community',color:'#993556'},
-    {name:'Canva Design School',url:'https://www.canva.com/learn/design/',color:'#185FA5'},
-    {name:'Google UX Course',url:'https://grow.google/certificates/ux-design/',color:'#0F6E56'},
-  ],
-  write:[
-    {name:'Coursera Writing',url:'https://www.coursera.org/courses?query=writing',color:'#185FA5'},
-    {name:'Grammarly Blog',url:'https://www.grammarly.com/blog/writing-techniques/',color:'#0F6E56'},
-    {name:'Medium',url:'https://medium.com',color:'#444441'},
-  ],
-  solve:[
-    {name:'HackerRank',url:'https://www.hackerrank.com/domains/algorithms',color:'#185FA5'},
-    {name:'Brilliant.org',url:'https://brilliant.org',color:'#854F0B'},
-    {name:'LeetCode',url:'https://leetcode.com/problemset/',color:'#993556'},
-  ]
-};
+  const catLinks = {
+    code: [
+      { name: 'freeCodeCamp', url: 'https://www.freecodecamp.org', color: '#1D9E75' },
+      { name: 'HackerRank', url: 'https://www.hackerrank.com/domains/tutorials/10-days-of-javascript', color: '#185FA5' },
+      { name: 'W3Schools', url: 'https://www.w3schools.com', color: '#854F0B' },
+    ],
+    design: [
+      { name: 'Figma Community', url: 'https://www.figma.com/community', color: '#993556' },
+      { name: 'Canva Design School', url: 'https://www.canva.com/learn/design/', color: '#185FA5' },
+      { name: 'Google UX Course', url: 'https://grow.google/certificates/ux-design/', color: '#0F6E56' },
+    ],
+    write: [
+      { name: 'Coursera Writing', url: 'https://www.coursera.org/courses?query=writing', color: '#185FA5' },
+      { name: 'Grammarly Blog', url: 'https://www.grammarly.com/blog/writing-techniques/', color: '#0F6E56' },
+      { name: 'Medium', url: 'https://medium.com', color: '#444441' },
+    ],
+    solve: [
+      { name: 'HackerRank', url: 'https://www.hackerrank.com/domains/algorithms', color: '#185FA5' },
+      { name: 'Brilliant.org', url: 'https://brilliant.org', color: '#854F0B' },
+      { name: 'LeetCode', url: 'https://leetcode.com/problemset/', color: '#993556' },
+    ]
+  };
 
-const challenges = [
-  {cat:'code',title:'CLI To-Do App',desc:'Build a command-line task manager with add, complete, delete, and list commands. Store tasks in a JSON file so they persist between sessions.'},
-  {cat:'design',title:'App Onboarding Screens',desc:'Design a 3-screen mobile onboarding flow for a productivity app. Focus on clarity, hierarchy, and a welcoming first impression.'},
-  {cat:'write',title:'Product Pitch in 500 Words',desc:'Write a compelling pitch for a fictional SaaS product targeting small businesses. Include the problem, solution, and a clear call to action.'},
-  {cat:'solve',title:'Optimal Delivery Route',desc:'Given 6 delivery locations on a grid, find the shortest route starting and ending at a warehouse. Describe your approach and reasoning.'},
-  {cat:'code',title:'Real-Time Chat UI',desc:'Create a frontend-only chat interface with message bubbles, timestamps, and a character counter. Simulate messages with JS.'},
-  {cat:'design',title:'Dark Mode Dashboard',desc:'Redesign a simple analytics dashboard using a dark color palette. Ensure all text meets contrast standards and charts remain readable.'},
-  {cat:'write',title:'Technical Blog: REST vs GraphQL',desc:'Write a 600-word blog post for junior developers explaining REST and GraphQL APIs, with one real-world example each.'},
-  {cat:'solve',title:'LRU Cache Design',desc:'Design a Least Recently Used cache for a media streaming app. Define the data structure, insertion, lookup, and eviction logic.'},
-  {cat:'code',title:'Weather App with API',desc:'Fetch and display current weather data using the Open-Meteo API. Show city, temperature, condition icon, and a 3-day forecast.'},
-  {cat:'design',title:'Brand Identity System',desc:'Create a mini brand guide for a fictional eco-tech startup: logo concept, 3-color palette, one typeface, and usage examples.'},
-  {cat:'write',title:'UX Case Study',desc:'Write a 400-word UX case study on redesigning a checkout flow. Include problem, research insight, design decision, and measurable outcome.'},
-  {cat:'solve',title:'Missing Number Puzzle',desc:'An array of 1–100 has two numbers missing. Write an algorithm to find them in O(n) time and O(1) space. Explain your logic.'},
-  {cat:'code',title:'Markdown Live Previewer',desc:'Build a split-pane web app where typing markdown on the left instantly renders HTML on the right.'},
-  {cat:'design',title:'Email Newsletter Template',desc:'Design an HTML email template for a weekly tech digest. Include a header, featured article card, 3 news items, and a footer.'},
-  {cat:'write',title:'Short Story: The Last Algorithm',desc:'Write a 300-word short story from the perspective of an AI about to be deprecated. End with a twist.'},
-  {cat:'solve',title:'Parking Lot System',desc:'Model the class structure for a multi-level parking lot that handles motorcycles, cars, and buses. Define spot allocation and release.'},
-  {cat:'code',title:'Binary Search Tree',desc:'Implement a BST from scratch with insert, search, and in-order traversal. Add a method to find the height of the tree.'},
-  {cat:'design',title:'Cluttered Page Redesign',desc:'Redesign a dense, poorly structured webpage using whitespace, hierarchy, and visual grouping. Show before and after.'},
-  {cat:'write',title:'SaaS Landing Page Copy',desc:'Write headline, subheadline, 3 feature blurbs, and a CTA for a fictional project-management SaaS.'},
-  {cat:'solve',title:'Fair Task Scheduler',desc:'Design a round-robin task scheduler for 4 workers with different speeds. Describe task assignment, failure handling, and rebalancing.'},
-  {cat:'code',title:'Budget Tracker App',desc:'Build an income/expense tracker with categories, running balance, and a visual summary by category.'},
-  {cat:'design',title:'Food Delivery App Flow',desc:'Design key screens of a food delivery app: home, restaurant page, cart, and order confirmation. Prioritize speed and clarity.'},
-  {cat:'write',title:'LinkedIn Post: AI in Everyday Work',desc:'Write an engaging 200-word LinkedIn post on how AI is changing daily workflows. Use a personal anecdote as the hook.'},
-  {cat:'solve',title:'Cipher Cracker',desc:'A message is encoded with a Caesar cipher of unknown shift. Write an algorithm to crack it using letter frequency analysis.'},
-  {cat:'code',title:'Quiz App with Timer',desc:'Build a 10-question quiz with a 30-second countdown per question, a score tracker, and a results screen.'},
-  {cat:'design',title:'Climate Change Infographic',desc:'Design a single-page infographic communicating 5 key climate statistics clearly and compellingly.'},
-  {cat:'write',title:'Cover Letter for a Dream Role',desc:'Write a cover letter for a fictional Senior Product Designer role at a sustainability startup. Make it specific and human.'},
-  {cat:'solve',title:'Airport Check-In System',desc:'Model the airport self-check-in flow: passenger lookup, seat selection, baggage options, boarding pass generation. Identify edge cases.'},
-  {cat:'code',title:'Mini Recommendation Engine',desc:'Build a content-based recommendation system. Given reading history (topics + time), suggest 3 articles from a sample dataset.'},
-  {cat:'design',title:'Developer Portfolio Site',desc:'Design a portfolio homepage for a full-stack developer. Include hero, skills, 2 project cards, and a contact section.'},
-  {cat:'code',title:'Search With Autocomplete',desc:'Build a search bar with real-time autocomplete over 200+ items. Implement debounce and keyboard navigation.'},
-];
+  const challenges = [
+    { cat: 'code', title: 'CLI To-Do App', desc: 'Build a command-line task manager with add, complete, delete, and list commands. Store tasks in a JSON file so they persist between sessions.' },
+    { cat: 'design', title: 'App Onboarding Screens', desc: 'Design a 3-screen mobile onboarding flow for a productivity app. Focus on clarity, hierarchy, and a welcoming first impression.' },
+    { cat: 'write', title: 'Product Pitch in 500 Words', desc: 'Write a compelling pitch for a fictional SaaS product targeting small businesses. Include the problem, solution, and a clear call to action.' },
+    { cat: 'solve', title: 'Optimal Delivery Route', desc: 'Given 6 delivery locations on a grid, find the shortest route starting and ending at a warehouse. Describe your approach and reasoning.' },
+    { cat: 'code', title: 'Real-Time Chat UI', desc: 'Create a frontend-only chat interface with message bubbles, timestamps, and a character counter. Simulate messages with JS.' },
+    { cat: 'design', title: 'Dark Mode Dashboard', desc: 'Redesign a simple analytics dashboard using a dark color palette. Ensure all text meets contrast standards and charts remain readable.' },
+    { cat: 'write', title: 'Technical Blog: REST vs GraphQL', desc: 'Write a 600-word blog post for junior developers explaining REST and GraphQL APIs, with one real-world example each.' },
+    { cat: 'solve', title: 'LRU Cache Design', desc: 'Design a Least Recently Used cache for a media streaming app. Define the data structure, insertion, lookup, and eviction logic.' },
+    { cat: 'code', title: 'Weather App with API', desc: 'Fetch and display current weather data using the Open-Meteo API. Show city, temperature, condition icon, and a 3-day forecast.' },
+    { cat: 'design', title: 'Brand Identity System', desc: 'Create a mini brand guide for a fictional eco-tech startup: logo concept, 3-color palette, one typeface, and usage examples.' },
+    { cat: 'write', title: 'UX Case Study', desc: 'Write a 400-word UX case study on redesigning a checkout flow. Include problem, research insight, design decision, and measurable outcome.' },
+    { cat: 'solve', title: 'Missing Number Puzzle', desc: 'An array of 1–100 has two numbers missing. Write an algorithm to find them in O(n) time and O(1) space. Explain your logic.' },
+    { cat: 'code', title: 'Markdown Live Previewer', desc: 'Build a split-pane web app where typing markdown on the left instantly renders HTML on the right.' },
+    { cat: 'design', title: 'Email Newsletter Template', desc: 'Design an HTML email template for a weekly tech digest. Include a header, featured article card, 3 news items, and a footer.' },
+    { cat: 'write', title: 'Short Story: The Last Algorithm', desc: 'Write a 300-word short story from the perspective of an AI about to be deprecated. End with a twist.' },
+    { cat: 'solve', title: 'Parking Lot System', desc: 'Model the class structure for a multi-level parking lot that handles motorcycles, cars, and buses. Define spot allocation and release.' },
+    { cat: 'code', title: 'Binary Search Tree', desc: 'Implement a BST from scratch with insert, search, and in-order traversal. Add a method to find the height of the tree.' },
+    { cat: 'design', title: 'Cluttered Page Redesign', desc: 'Redesign a dense, poorly structured webpage using whitespace, hierarchy, and visual grouping. Show before and after.' },
+    { cat: 'write', title: 'SaaS Landing Page Copy', desc: 'Write headline, subheadline, 3 feature blurbs, and a CTA for a fictional project-management SaaS.' },
+    { cat: 'solve', title: 'Fair Task Scheduler', desc: 'Design a round-robin task scheduler for 4 workers with different speeds. Describe task assignment, failure handling, and rebalancing.' },
+    { cat: 'code', title: 'Budget Tracker App', desc: 'Build an income/expense tracker with categories, running balance, and a visual summary by category.' },
+    { cat: 'design', title: 'Food Delivery App Flow', desc: 'Design key screens of a food delivery app: home, restaurant page, cart, and order confirmation. Prioritize speed and clarity.' },
+    { cat: 'write', title: 'LinkedIn Post: AI in Everyday Work', desc: 'Write an engaging 200-word LinkedIn post on how AI is changing daily workflows. Use a personal anecdote as the hook.' },
+    { cat: 'solve', title: 'Cipher Cracker', desc: 'A message is encoded with a Caesar cipher of unknown shift. Write an algorithm to crack it using letter frequency analysis.' },
+    { cat: 'code', title: 'Quiz App with Timer', desc: 'Build a 10-question quiz with a 30-second countdown per question, a score tracker, and a results screen.' },
+    { cat: 'design', title: 'Climate Change Infographic', desc: 'Design a single-page infographic communicating 5 key climate statistics clearly and compellingly.' },
+    { cat: 'write', title: 'Cover Letter for a Dream Role', desc: 'Write a cover letter for a fictional Senior Product Designer role at a sustainability startup. Make it specific and human.' },
+    { cat: 'solve', title: 'Airport Check-In System', desc: 'Model the airport self-check-in flow: passenger lookup, seat selection, baggage options, boarding pass generation. Identify edge cases.' },
+    { cat: 'code', title: 'Mini Recommendation Engine', desc: 'Build a content-based recommendation system. Given reading history (topics + time), suggest 3 articles from a sample dataset.' },
+    { cat: 'design', title: 'Developer Portfolio Site', desc: 'Design a portfolio homepage for a full-stack developer. Include hero, skills, 2 project cards, and a contact section.' },
+    { cat: 'code', title: 'Search With Autocomplete', desc: 'Build a search bar with real-time autocomplete over 200+ items. Implement debounce and keyboard navigation.' },
+  ];
 
-const catLabel = {code:'Coding',design:'Designing',write:'Writing',solve:'Problem-Solving'};
-let current=null, activeFilter='all';
+  const catLabel = { code: 'Coding', design: 'Designing', write: 'Writing', solve: 'Problem-Solving' };
+  let current = null, activeFilter = 'all';
 
-const beginnerChallenges=[
-  {title:'Organize a Messy Bookshelf',tag:'Sorting & Grouping',desc:'You have 20 books mixed up on a shelf. How would you organize them so anyone can find a book quickly?',steps:['List what types of books there are (fiction, science, cooking, etc.)','Decide a grouping rule — by topic, by author name, by size, or by color','Write the order you would place them in, from left to right','Ask yourself: if a friend came over, could they find a book without your help?'],links:[{name:'Khan Academy – Algorithms',url:'https://www.khanacademy.org/computing/computer-science/algorithms'},{name:'Brilliant – Logic',url:'https://brilliant.org/courses/logic-fundamentals/'}]},
-  {title:'Plan a Birthday Party for 20 People',tag:'Planning & Prioritizing',desc:'You have one week and a small budget to plan a birthday party for 20 friends. What do you need to figure out first?',steps:['Write down everything you think is needed (venue, food, invites, decorations, etc.)','Circle the 3 things that MUST be decided first — these are your blockers','Arrange remaining tasks in the order you would handle them','Check: have you forgotten anything important?'],links:[{name:'Coursera – Intro to Project Management',url:'https://www.coursera.org/learn/project-management-basics'},{name:'Khan Academy – Planning',url:'https://www.khanacademy.org/college-careers-more/entrepreneurship2'}]},
-  {title:'Find the Fastest Route to School',tag:'Logical Thinking',desc:'There are 3 routes. Route A takes 20 min but has heavy traffic. Route B takes 25 min but is always clear. Route C takes 15 min but has a steep hill. Which do you pick and why?',steps:['List the pros and cons of each route','Decide which factor matters most: time, energy, or reliability','Pick a route and write one sentence explaining your decision','What would make you change your choice?'],links:[{name:'Brilliant – Logic & Deduction',url:'https://brilliant.org/courses/logic-fundamentals/'},{name:'Khan Academy – Math Reasoning',url:'https://www.khanacademy.org/math/cc-sixth-grade-math'}]},
-  {title:'Design a Simple Morning Routine',tag:'Sequencing & Flow',desc:'You need to wake up, exercise, shower, eat breakfast, and leave for work — all in 60 minutes. How do you arrange these steps so it actually works?',steps:['Estimate how long each activity takes in minutes','Check if the total adds up to 60 minutes or less','If too long, which step can be shortened or removed?','Write your final sequence from wake-up to leaving the door'],links:[{name:'Coursera – Learning How to Learn',url:'https://www.coursera.org/learn/learning-how-to-learn'},{name:'Khan Academy – Productivity',url:'https://www.khanacademy.org/college-careers-more'}]},
-  {title:'Spot the Odd One Out',tag:'Pattern Recognition',desc:'Look at: Apple, Mango, Carrot, Banana, Grape. One does not belong with the others. Which is it and why? There may be more than one valid answer!',steps:['Read all 5 words and notice what most of them have in common','Find the word that does not share that common trait','Write your answer and your reason in one sentence','Can you find a different grouping rule that gives a different odd one out?'],links:[{name:'Brilliant – Patterns',url:'https://brilliant.org/courses/math-fundamentals/'},{name:'Khan Academy – Patterns',url:'https://www.khanacademy.org/math/cc-fourth-grade-math'}]},
-  {title:'Help a Friend Choose a Laptop',tag:'Decision Making',desc:'Your friend mostly watches videos, writes documents, and video calls family. They have a budget of ₹40,000. How do you help them decide?',steps:['List what your friend actually needs the laptop to do','Identify which features matter (battery, screen, speed) and which don\'t','Eliminate options that are too expensive or have unnecessary extras','Suggest one laptop and give 2 clear reasons why it fits their needs'],links:[{name:'Khan Academy – Critical Thinking',url:'https://www.khanacademy.org/college-careers-more/career-content'},{name:'Coursera – Decision Making',url:'https://www.coursera.org/learn/decision-making'}]},
-  {title:'Fix a Leaking Schedule',tag:'Finding Problems',desc:'A student has 8h class, 3h homework, 2h travel, 1h meals, 8h sleep. But there are only 24 hours in a day. What went wrong?',steps:['Add up all the hours listed in the schedule','Subtract from 24 to see how much is left (or if it is already over 24)','Identify which blocks are unrealistic or missing','Suggest one change to make the schedule fit into 24 hours'],links:[{name:'Khan Academy – Basic Math',url:'https://www.khanacademy.org/math/arithmetic'},{name:'Brilliant – Math Foundations',url:'https://brilliant.org/courses/math-fundamentals/'}]},
-  {title:'Write Instructions for Making Tea',tag:'Clear Communication',desc:'Write step-by-step instructions to make a cup of tea — so clear that someone who has never made tea could follow them perfectly.',steps:['Think of every action from start to finish — even tiny ones like "fill the kettle"','Number each step in the exact order it must happen','Read it back: could a 10-year-old follow this without asking questions?','Fix any step that is unclear or assumes too much knowledge'],links:[{name:'Coursera – English Writing',url:'https://www.coursera.org/learn/sciwrite'},{name:'Grammarly – Writing Tips',url:'https://www.grammarly.com/blog/category/handbook/'}]},
-  {title:'The Broken Vending Machine',tag:'Debugging & Logic',desc:'A vending machine gives the wrong item: press A → get B, press B → get C, press C → get A. If you want item C, what button do you press?',steps:['Draw a small table: Button Pressed → Item Given','Map out: A→B, B→C, C→A','Work backwards: to GET C, which button produces C?','Check your answer by tracing the logic one more time'],links:[{name:'Khan Academy – Intro to CS',url:'https://www.khanacademy.org/computing/computer-programming'},{name:'Brilliant – Logic Puzzles',url:'https://brilliant.org/courses/logic-fundamentals/'}]},
-  {title:'Build a Better Complaint Form',tag:'User Thinking',desc:'A hotel gets many complaints but can\'t figure out what guests are unhappy about. Design a simple complaint form to help them understand and fix problems faster.',steps:['Think about what information a hotel would need to solve a complaint','List 5–7 questions you would ask guests','Decide the order — start easy, save personal info for last','Remove any question that won\'t actually help the hotel improve'],links:[{name:'Google UX Design Certificate',url:'https://grow.google/certificates/ux-design/'},{name:'Coursera – UX Basics',url:'https://www.coursera.org/professional-certificates/google-ux-design'}]},
-];
+  const beginnerChallenges = [
+    { title: 'Organize a Messy Bookshelf', tag: 'Sorting & Grouping', desc: 'You have 20 books mixed up on a shelf. How would you organize them so anyone can find a book quickly?', steps: ['List what types of books there are (fiction, science, cooking, etc.)', 'Decide a grouping rule — by topic, by author name, by size, or by color', 'Write the order you would place them in, from left to right', 'Ask yourself: if a friend came over, could they find a book without your help?'], links: [{ name: 'Khan Academy – Algorithms', url: 'https://www.khanacademy.org/computing/computer-science/algorithms' }, { name: 'Brilliant – Logic', url: 'https://brilliant.org/courses/logic-fundamentals/' }] },
+    { title: 'Plan a Birthday Party for 20 People', tag: 'Planning & Prioritizing', desc: 'You have one week and a small budget to plan a birthday party for 20 friends. What do you need to figure out first?', steps: ['Write down everything you think is needed (venue, food, invites, decorations, etc.)', 'Circle the 3 things that MUST be decided first — these are your blockers', 'Arrange remaining tasks in the order you would handle them', 'Check: have you forgotten anything important?'], links: [{ name: 'Coursera – Intro to Project Management', url: 'https://www.coursera.org/learn/project-management-basics' }, { name: 'Khan Academy – Planning', url: 'https://www.khanacademy.org/college-careers-more/entrepreneurship2' }] },
+    { title: 'Find the Fastest Route to School', tag: 'Logical Thinking', desc: 'There are 3 routes. Route A takes 20 min but has heavy traffic. Route B takes 25 min but is always clear. Route C takes 15 min but has a steep hill. Which do you pick and why?', steps: ['List the pros and cons of each route', 'Decide which factor matters most: time, energy, or reliability', 'Pick a route and write one sentence explaining your decision', 'What would make you change your choice?'], links: [{ name: 'Brilliant – Logic & Deduction', url: 'https://brilliant.org/courses/logic-fundamentals/' }, { name: 'Khan Academy – Math Reasoning', url: 'https://www.khanacademy.org/math/cc-sixth-grade-math' }] },
+    { title: 'Design a Simple Morning Routine', tag: 'Sequencing & Flow', desc: 'You need to wake up, exercise, shower, eat breakfast, and leave for work — all in 60 minutes. How do you arrange these steps so it actually works?', steps: ['Estimate how long each activity takes in minutes', 'Check if the total adds up to 60 minutes or less', 'If too long, which step can be shortened or removed?', 'Write your final sequence from wake-up to leaving the door'], links: [{ name: 'Coursera – Learning How to Learn', url: 'https://www.coursera.org/learn/learning-how-to-learn' }, { name: 'Khan Academy – Productivity', url: 'https://www.khanacademy.org/college-careers-more' }] },
+    { title: 'Spot the Odd One Out', tag: 'Pattern Recognition', desc: 'Look at: Apple, Mango, Carrot, Banana, Grape. One does not belong with the others. Which is it and why? There may be more than one valid answer!', steps: ['Read all 5 words and notice what most of them have in common', 'Find the word that does not share that common trait', 'Write your answer and your reason in one sentence', 'Can you find a different grouping rule that gives a different odd one out?'], links: [{ name: 'Brilliant – Patterns', url: 'https://brilliant.org/courses/math-fundamentals/' }, { name: 'Khan Academy – Patterns', url: 'https://www.khanacademy.org/math/cc-fourth-grade-math' }] },
+    { title: 'Help a Friend Choose a Laptop', tag: 'Decision Making', desc: 'Your friend mostly watches videos, writes documents, and video calls family. They have a budget of ₹40,000. How do you help them decide?', steps: ['List what your friend actually needs the laptop to do', 'Identify which features matter (battery, screen, speed) and which don\'t', 'Eliminate options that are too expensive or have unnecessary extras', 'Suggest one laptop and give 2 clear reasons why it fits their needs'], links: [{ name: 'Khan Academy – Critical Thinking', url: 'https://www.khanacademy.org/college-careers-more/career-content' }, { name: 'Coursera – Decision Making', url: 'https://www.coursera.org/learn/decision-making' }] },
+    { title: 'Fix a Leaking Schedule', tag: 'Finding Problems', desc: 'A student has 8h class, 3h homework, 2h travel, 1h meals, 8h sleep. But there are only 24 hours in a day. What went wrong?', steps: ['Add up all the hours listed in the schedule', 'Subtract from 24 to see how much is left (or if it is already over 24)', 'Identify which blocks are unrealistic or missing', 'Suggest one change to make the schedule fit into 24 hours'], links: [{ name: 'Khan Academy – Basic Math', url: 'https://www.khanacademy.org/math/arithmetic' }, { name: 'Brilliant – Math Foundations', url: 'https://brilliant.org/courses/math-fundamentals/' }] },
+    { title: 'Write Instructions for Making Tea', tag: 'Clear Communication', desc: 'Write step-by-step instructions to make a cup of tea — so clear that someone who has never made tea could follow them perfectly.', steps: ['Think of every action from start to finish — even tiny ones like "fill the kettle"', 'Number each step in the exact order it must happen', 'Read it back: could a 10-year-old follow this without asking questions?', 'Fix any step that is unclear or assumes too much knowledge'], links: [{ name: 'Coursera – English Writing', url: 'https://www.coursera.org/learn/sciwrite' }, { name: 'Grammarly – Writing Tips', url: 'https://www.grammarly.com/blog/category/handbook/' }] },
+    { title: 'The Broken Vending Machine', tag: 'Debugging & Logic', desc: 'A vending machine gives the wrong item: press A → get B, press B → get C, press C → get A. If you want item C, what button do you press?', steps: ['Draw a small table: Button Pressed → Item Given', 'Map out: A→B, B→C, C→A', 'Work backwards: to GET C, which button produces C?', 'Check your answer by tracing the logic one more time'], links: [{ name: 'Khan Academy – Intro to CS', url: 'https://www.khanacademy.org/computing/computer-programming' }, { name: 'Brilliant – Logic Puzzles', url: 'https://brilliant.org/courses/logic-fundamentals/' }] },
+    { title: 'Build a Better Complaint Form', tag: 'User Thinking', desc: 'A hotel gets many complaints but can\'t figure out what guests are unhappy about. Design a simple complaint form to help them understand and fix problems faster.', steps: ['Think about what information a hotel would need to solve a complaint', 'List 5–7 questions you would ask guests', 'Decide the order — start easy, save personal info for last', 'Remove any question that won\'t actually help the hotel improve'], links: [{ name: 'Google UX Design Certificate', url: 'https://grow.google/certificates/ux-design/' }, { name: 'Coursera – UX Basics', url: 'https://www.coursera.org/professional-certificates/google-ux-design' }] },
+  ];
 
-function showTab(tab){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelector(`[onclick="showTab('${tab}')"]`).classList.add('active');
-  document.getElementById('page-'+tab).classList.add('active');
-}
+  function showTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[onclick="showTab('${tab}')"]`).classList.add('active');
+    document.getElementById('page-' + tab).classList.add('active');
+  }
 
-function renderCards(){
-  const grid=document.getElementById('grid');
-  grid.innerHTML='';
-  challenges.forEach((c,i)=>{
-    const show=activeFilter==='all'||c.cat===activeFilter;
-    const div=document.createElement('div');
-    div.className='card '+c.cat+(show?'':' hidden')+(current===i?' selected':'');
-    div.id='card-'+i;
-    div.innerHTML=`<div class="day-num">Oct ${String(i+1).padStart(2,'0')}</div>
+  function renderCards() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    challenges.forEach((c, i) => {
+      const show = activeFilter === 'all' || c.cat === activeFilter;
+      const div = document.createElement('div');
+      div.className = 'card ' + c.cat + (show ? '' : ' hidden') + (current === i ? ' selected' : '');
+      div.id = 'card-' + i;
+      div.innerHTML = `<div class="day-num">Oct ${String(i + 1).padStart(2, '0')}</div>
       <span class="cat-badge ${c.cat}"><span class="dot ${c.cat}"></span> ${catLabel[c.cat]}</span>
       <div class="card-title">${c.title}</div>`;
-    div.onclick=()=>openDetail(i);
-    grid.appendChild(div);
-  });
-}
+      div.onclick = () => openDetail(i);
+      grid.appendChild(div);
+    });
+  }
 
-function filter(cat){
-  activeFilter=cat;
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-  const t=cat==='all'?document.querySelector('.pill.all'):document.querySelector('.pill.'+cat);
-  if(t)t.classList.add('active');
-  closeDetail();
-  renderCards();
-}
+  function filter(cat) {
+    activeFilter = cat;
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    const t = cat === 'all' ? document.querySelector('.pill.all') : document.querySelector('.pill.' + cat);
+    if (t) t.classList.add('active');
+    closeDetail();
+    renderCards();
+  }
 
-function openDetail(i){
-  current=i;
-  const c=challenges[i];
-  const panel=document.getElementById('detail');
-  document.getElementById('d-day').textContent=`Day ${i+1} · October ${i+1}`;
-  const badge=document.getElementById('d-badge');
-  badge.className='cat-badge '+c.cat;
-  badge.innerHTML=`<span class="dot ${c.cat}"></span> ${catLabel[c.cat]}`;
-  document.getElementById('d-title').textContent=c.title;
-  document.getElementById('d-desc').textContent=c.desc;
-  const linksDiv=document.getElementById('d-links');
-  linksDiv.innerHTML='';
-  (catLinks[c.cat]||[]).forEach(l=>{
-    const a=document.createElement('a');
-    a.className='res-link';
-    a.href=l.url;
-    a.target='_blank';
-    a.innerHTML=`<span style="width:8px;height:8px;border-radius:50%;background:${l.color};display:inline-block;flex-shrink:0"></span>${l.name}`;
-    linksDiv.appendChild(a);
-  });
-  panel.className='detail-panel visible '+c.cat;
-  renderCards();
-  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
-}
+  function openDetail(i) {
+    current = i;
+    const c = challenges[i];
+    const panel = document.getElementById('detail');
+    document.getElementById('d-day').textContent = `Day ${i + 1} · October ${i + 1}`;
+    const badge = document.getElementById('d-badge');
+    badge.className = 'cat-badge ' + c.cat;
+    badge.innerHTML = `<span class="dot ${c.cat}"></span> ${catLabel[c.cat]}`;
+    document.getElementById('d-title').textContent = c.title;
+    document.getElementById('d-desc').textContent = c.desc;
+    const linksDiv = document.getElementById('d-links');
+    linksDiv.innerHTML = '';
+    (catLinks[c.cat] || []).forEach(l => {
+      const a = document.createElement('a');
+      a.className = 'res-link';
+      a.href = l.url;
+      a.target = '_blank';
+      a.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${l.color};display:inline-block;flex-shrink:0"></span>${l.name}`;
+      linksDiv.appendChild(a);
+    });
+    panel.className = 'detail-panel visible ' + c.cat;
+    renderCards();
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
 
-function closeDetail(){
-  current=null;
-  document.getElementById('detail').className='detail-panel';
-  renderCards();
-}
+  function closeDetail() {
+    current = null;
+    document.getElementById('detail').className = 'detail-panel';
+    renderCards();
+  }
 
-function tryChallenge(){
-  if(current===null)return;
-  const c=challenges[current];
-  sendPrompt(`I'm doing Zestober Day ${current+1}: "${c.title}" (${catLabel[c.cat]}). Help me get started. Brief: ${c.desc}`);
-}
+  function tryChallenge() {
+    if (current === null) return;
+    const c = challenges[current];
+    sendPrompt(`I'm doing Zestober Day ${current + 1}: "${c.title}" (${catLabel[c.cat]}). Help me get started. Brief: ${c.desc}`);
+  }
 
-function renderBeginner(){
-  const list=document.getElementById('beg-list');
-  beginnerChallenges.forEach((c,i)=>{
-    const div=document.createElement('div');
-    div.className='beg-card';
-    div.id='beg-'+i;
-    div.innerHTML=`
+  function renderBeginner() {
+    const list = document.getElementById('beg-list');
+    beginnerChallenges.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'beg-card';
+      div.id = 'beg-' + i;
+      div.innerHTML = `
       <div class="beg-header" onclick="toggleBeg(${i})">
-        <div class="beg-num">${i+1}</div>
+        <div class="beg-num">${i + 1}</div>
         <div class="beg-info">
           <div class="beg-title">${c.title}</div>
           <div class="beg-tag">${c.tag}</div>
@@ -301,27 +1080,30 @@ function renderBeginner(){
         <div class="beg-desc">${c.desc}</div>
         <div class="think-steps">
           <div class="think-label">How to think through this</div>
-          ${c.steps.map((s,j)=>`<div class="think-step"><div class="think-step-num">${j+1}</div><span>${s}</span></div>`).join('')}
+          ${c.steps.map((s, j) => `<div class="think-step"><div class="think-step-num">${j + 1}</div><span>${s}</span></div>`).join('')}
         </div>
         <div class="beg-res-label">Free websites to learn more</div>
         <div class="beg-res-links">
-          ${c.links.map(l=>`<a class="beg-res-link" href="${l.url}" target="_blank"><span style="width:7px;height:7px;border-radius:50%;background:#7F77DD;display:inline-block;flex-shrink:0"></span>${l.name}</a>`).join('')}
+          ${c.links.map(l => `<a class="beg-res-link" href="${l.url}" target="_blank"><span style="width:7px;height:7px;border-radius:50%;background:#7F77DD;display:inline-block;flex-shrink:0"></span>${l.name}</a>`).join('')}
         </div>
         <button class="beg-btn" onclick="startBeginner(${i})">Help me solve this ↗</button>
       </div>`;
-    list.appendChild(div);
-  });
-}
+      list.appendChild(div);
+    });
+  }
 
-function toggleBeg(i){
-  document.getElementById('beg-'+i).classList.toggle('open');
-}
+  function toggleBeg(i) {
+    document.getElementById('beg-' + i).classList.toggle('open');
+  }
 
-function startBeginner(i){
-  const c=beginnerChallenges[i];
-  sendPrompt(`I am a complete beginner. Help me solve this step by step without any coding or technical terms: "${c.title}". Challenge: ${c.desc}`);
-}
+  function startBeginner(i) {
+    const c = beginnerChallenges[i];
+    sendPrompt(`I am a complete beginner. Help me solve this step by step without any coding or technical terms: "${c.title}". Challenge: ${c.desc}`);
+  }
 
-renderCards();
-renderBeginner();
+  renderCards();
+  renderBeginner();
+</script>
+</body>
+</html>
 </script>
